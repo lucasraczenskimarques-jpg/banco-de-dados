@@ -1,0 +1,30 @@
+create database doe;
+use doe;
+create table pessoa(
+  id_pessoa int auto_increment primary key,
+  telefone varchar(20),
+  doador enum('sim', 'não'),
+  nome varchar(100),
+  necessitado enum('sim','não')
+);
+create table item(
+  id_item int auto_increment primary key,
+  estado varchar(50),
+  categoria enum('roupa','calçados','moveis','outros'),
+  foto varchar(255)
+);
+create table doa(
+  id_doa int auto_increment primary key,
+  data date,
+  status enum('pendente','concluido','cancelado'),
+  id_pessoa int,
+  id_item int,
+  foreign key (id_pessoa) references pessoa (id_pessoa),
+  foreign key (id_item) references item (id_item)
+);
+
+create table endereço(
+  cep varchar(10),
+  cidade varchar(100),
+  bairro varchar(100)
+);
