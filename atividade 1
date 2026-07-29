@@ -17,10 +17,18 @@ id int auto_increment primary key,
    nome varchar(10),
    turbo varchar (10)
    ) character set utf8mb4;
-   
+   -- inserindo dados
+   insert into turma (nome, turbo) values
+   ('3A','manhã'),
+   ('2A','manhã'),
+   ('1A','manhã');
+   -- mostrar dados
+   select*from turma;
+   select nome,turbo from turma;
 create table if not exists aluno(
    id int auto_increment primary key,
    nome varchar(20),
    id_turma int,
    foreign key (id_turma)references turma(id)
 )character set utf8mb4;
+
