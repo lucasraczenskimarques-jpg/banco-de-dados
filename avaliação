@@ -1,0 +1,56 @@
+create database appentrega
+collate utf8mb4_0900_ai_ci
+default character SET utf8mb4;
+use appentrega;
+
+create table if not exists cliente(
+id_cpf int auto_increment primary key,
+nome varchar (20),
+email varchar (50)
+);
+insert into cliente
+(nome, email)
+values
+("lucas", "lucas@gmail.com"), ("daniel", "daniel@gmail.com");
+
+
+create table if not exists endereço(
+id int auto_increment primary key,
+cep int,
+rua varchar (50),
+bairro varchar (20),
+numero int,
+id_cliente varchar(30),
+foreign key (id_cliente) references cliente(id)
+);
+
+create table if not exists pedido(
+id int auto_increment primary key,
+data_pedido datetime,
+valor_total decimal(7,2),
+id_endereço varchar(50),
+foreign key (id_endereço) references endereço(id)
+);
+
+create table if not exists produto(
+id int auto_increment primary key,
+nome varchar(30),
+valor decimal(7,2),
+quantidade int
+);
+
+create table if not exists item_pedido(
+id int auto_increment primary key,
+quantidade int,
+valor_unidade decimal(7,2),
+sub_total decimal(7,2),
+id_pedido int,
+id_produto int,
+foreign key (id_pedido) references pedido(id),
+foreign key (id_produto) references produto(id)
+);
+
+
+
+
+
